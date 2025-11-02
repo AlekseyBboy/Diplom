@@ -1,0 +1,21 @@
+a{
+    padding-right: 50px;
+    padding-left: 150px;
+}
+h1{
+    text-align: center;
+}
+
+.conteiner1{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+ .item {
+ border: 2px solid black;
+ padding: 15px;
+ width: 250px;
+ min-height: 150px;
+ background-color: bisque;
+ }

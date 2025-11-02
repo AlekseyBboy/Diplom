@@ -1,10 +1,14 @@
+from email.policy import default
+
 from django.db import models
 from django.contrib.auth.models import User
 
 
 class Author(models.Model):
     name = models.CharField(max_length=100)
-    bio = models.CharField(blank=True)
+    bio = models.TextField(blank=True, null=True)
+    birth_date = models.DateField(blank=True, null=True)
+    photo = models.ImageField(upload_to='authors/', blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -45,4 +49,16 @@ class Borrow(models.Model):
 
     def __str__(self):
         return f"{self.student} - {self.book}"
+
+
+class Reservation(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    res_date = models.DateTimeField(auto_now_add=True)
+    expire_date = models.DateTimeField()
+    stat = models.CharField(max_length=20, choices=[('active', 'Активна'), ('completed', 'Возвращена'), ('expired', 'Просрочена')], default='active')
+
+    def __str__(self):
+        return f"{self.user.username} - {self.book.title}"
+
 

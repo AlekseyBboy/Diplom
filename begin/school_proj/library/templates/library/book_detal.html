@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ book.title }}</title>
+</head>
+<body>
+<h1>{{ book.title }}</h1>
+<p><strong>Автор:</strong> {{ book.author }}</p>
+<p><strong>Доступно:</strong> {{ book.available }}</p>
+{% if book.available > 0 %}
+<a href="{% url 'reserve_book' book_id=book.id %}" class="btn btn-success">
+    Забронировать эту книгу
+</a>
+{% else %}
+<button disabled>Нет в наличии</button>
+{% endif %}
+<div class="author-opis" >
+    <h2>Поподробнее об авторе: {{ book.author.name }}</h2>
+    {% if book.author.photo %}
+    <img src="{{ book.author.photo.url }}" alt="{{ book.author.name }} " style="max-width: 200px; border-radius: 8px;">
+    {% endif %}
+    {% if book.author.bio %}
+    <p><b>Биография:</b> {{ book.author.bio }}</p>
+    {% endif %}
+</div>
+
+<br><br>
+<a href="{% url 'list' %}">Назад к каталогу книг</a>
+</body>
+</html>

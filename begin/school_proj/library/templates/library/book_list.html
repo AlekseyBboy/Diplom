@@ -1,0 +1,22 @@
+{% extends 'library/base.html' %}
+
+{% block content %}
+<h1>Все книги</h1>
+<div class="conteiner1">
+ {% for book in books %}
+ <div class="item">
+     <h3><a href="{% url 'det' book_id=book.id %}">{{ book.title }}</a></h3>
+<p><b>Автор: </b> {{ book.author.name }}</p>
+<p><b>Жанр: </b> {{ book.genre.name }}</p>
+<p><b>Всего книг: </b> {{ book.all }}</p>
+<p><b>Доступно: </b> {{ book.available }}</p>
+
+{% if book.available > 0 %}
+  <span style="color: green;">&#9989; Доступна</span>
+{% else %}
+  <span style="color: red;">&#10060; Нет в наличии</span>
+  {% endif %}
+</div>
+{% endfor %}
+</div>
+{% endblock %}

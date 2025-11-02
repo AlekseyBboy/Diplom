@@ -1,0 +1,16 @@
+{% extends 'library/base.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+<div class="s">
+<h1>Онлайн Школьная Библиотека</h1>
+<p>Ваш доступ к знаниям и литературе</p>
+</div>
+
+<div class="s2">
+    <div>{{ total_books }} книг</div>
+    <div>{{ available }} доступно</div>
+</div>
+
+{% endblock %}
